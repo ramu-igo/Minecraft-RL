@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+    <Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <About>
+        <Summary/>
+      </About>
+      <ModSettings>
+        <MsPerTick>{MS_TICK}</MsPerTick>
+      </ModSettings>
+
+      <ServerSection>
+        <ServerInitialConditions>
+          <Time>
+            <StartTime>8000</StartTime>
+            <AllowPassageOfTime>false</AllowPassageOfTime>
+          </Time>
+          <Weather>clear</Weather>
+        </ServerInitialConditions>
+        <ServerHandlers>
+          <FileWorldGenerator src="{WORLD_DATA}" forceReset="{FORCE_RESET}" />
+          {QUIT_TIMEUP}
+        </ServerHandlers>
+      </ServerSection>
+
+      <AgentSection mode="Survival">
+        <Name>ML_Agent</Name>
+        <AgentStart>
+          <Placement x="-2348" y="4" z="-237" yaw="90" />
+          <Inventory>
+            <InventoryObject type="wooden_sword" slot="0" quantity="1"/>
+          </Inventory>
+        </AgentStart>
+        <AgentHandlers>
+          <HumanLevelCommands />
+          <MissionQuitCommands/>
+          <RewardForDamagingEntity>
+            <Mob type="Zombie" reward="{REWARD_ATTACK}"/>
+          </RewardForDamagingEntity>
+          <ObservationFromNearbyEntities>
+            <Range name="entities" xrange="50" yrange="2" zrange="50"/>
+          </ObservationFromNearbyEntities>
+          <ObservationFromFullStats/>
+
+          <VideoProducer want_depth="false">
+            <Width>{WIDTH}</Width>
+            <Height>{HEIGHT}</Height>
+          </VideoProducer>
+
+        </AgentHandlers>
+      </AgentSection>
+
+      {OBSERVER}
+
+</Mission>
